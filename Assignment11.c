@@ -9,7 +9,7 @@ int main()
     scanf("%lf" , &n);
     printf("Select the operation you wish to perform \n");
     printf("1. Square Root \n")
-    printf("2. Sqaure \n");
+    printf("2. Square \n");
     printf("3. Cube \n");
     printf("$. Check if Prime \n");
     printf("5. Factorial \n");
