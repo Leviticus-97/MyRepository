@@ -63,6 +63,7 @@ int main(){
     else{
         printf("Student has Failed \n");
     }
+    return 0;
 
 
 }
