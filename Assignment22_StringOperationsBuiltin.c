@@ -1,28 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
-
-// manual reverse
-void strrev_manual(char *str) {
-    int n = strlen(str);
-    for (int i = 0; i < n / 2; i++) {
-        char temp = str[i];
-        str[i] = str[n - 1 - i];
-        str[n - 1 - i] = temp;
-    }
-}
-
-// manual uppercase
-void strupr_manual(char *str) {
-    for (int i = 0; str[i]; i++)
-        str[i] = toupper(str[i]);
-}
-
-// manual lowercase
-void strlwr_manual(char *str) {
-    for (int i = 0; str[i]; i++)
-        str[i] = tolower(str[i]);
-}
 
 int main() {
     char s1[100], s2[100];
@@ -39,9 +16,9 @@ int main() {
         printf("2. Copy string\n");
         printf("3. Concatenate strings\n");
         printf("4. Compare strings\n");
-        printf("5. Reverse string\n");
-        printf("6. Convert to uppercase\n");
-        printf("7. Convert to lowercase\n");
+        printf("5. Find character in string\n");
+        printf("6. Find substring\n");
+        printf("7. Split string by delimiter\n");
         printf("8. Exit\n");
         printf("Enter choice: ");
         scanf("%d", &choice);
@@ -76,24 +53,36 @@ int main() {
                 break;
 
             case 5:
-                char rev[100];
-                strcpy(rev, s1);
-                strrev_manual(rev);
-                printf("Reversed string: %s\n", rev);
+                char ch;
+                printf("Enter character to find: ");
+                scanf(" %c", &ch);
+                char *pos = strchr(s1, ch);
+                if (pos)
+                    printf("Character '%c' found at position %ld\n", ch, pos - s1);
+                else
+                    printf("Character not found\n");
                 break;
 
             case 6:
-                char upper[100];
-                strcpy(upper, s1);
-                strupr_manual(upper);
-                printf("Uppercase: %s\n", upper);
+                char *sub = strstr(s1, s2);
+                if (sub)
+                    printf("'%s' found in '%s' at position %ld\n", s2, s1, sub - s1);
+                else
+                    printf("Substring not found\n");
                 break;
 
             case 7:
-                char lower[100];
-                strcpy(lower, s1);
-                strlwr_manual(lower);
-                printf("Lowercase: %s\n", lower);
+                char delim[10];
+                char temp[100];
+                strcpy(temp, s1);
+                printf("Enter delimiter: ");
+                scanf("%s", delim);
+                char *token = strtok(temp, delim);
+                printf("Tokens:\n");
+                while (token != NULL) {
+                    printf("  %s\n", token);
+                    token = strtok(NULL, delim);
+                }
                 break;
 
             case 8:
